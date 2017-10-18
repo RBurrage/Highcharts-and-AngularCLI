@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterContentInit, OnDestroy } from '@angular/core';
 import { chart } from 'highcharts';
 import { baseChartOptions } from '../base-chart-options';
+import * as annotations from 'highcharts/modules/annotations.js';
 
 @Component({
   selector: 'app-area',
@@ -12,6 +13,7 @@ export class AreaComponent implements AfterContentInit, OnDestroy {
   chart: Highcharts.ChartObject;
 
   ngAfterContentInit() {   
+    console.log(annotations);
     let typeOfChart = 'area'
     let addedOptions = {
       chart: {
@@ -22,18 +24,18 @@ export class AreaComponent implements AfterContentInit, OnDestroy {
       annotations: [{
         labels: [{
           point: {
-            x: 0,
-            y: 0
-            },
-            text: 'Test',
-            backgroundColor: 'black'
-          }]
+            x: 150,
+            y: 10
+            }
+          }],
+          text: 'Test',
+          backgroundColor: 'black'
       }]
 
     };
 
     Object.assign(baseChartOptions, addedOptions);
-
+    console.log(baseChartOptions);
     this.chart = chart(this.areaChartTarget.nativeElement, baseChartOptions);
   }
 
